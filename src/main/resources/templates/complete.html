@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>予約画面</title>
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<header>
+		<a th:href="@{/}" class="header_title"><img th:src="@{images/Reserve.png}" id="header_logo"></a>
+	</header>
+	<h1 class="header_pagename"><img th:src="@{images/goraitenyoyaku.png}"></h1>
+	<div class="container">
+		<p class="complete_phrase">予約が確定しました。<br>お気をつけてお越しください！</p>
+		<form class="back_index_form" action="/">
+			<section class="btn_section">
+				<button class="btn_for_movement back_btn" id="back_btn_comoplete" type="submit">トップへ戻る
+			</section>
+		</form>
+	</div>
+	<footer>
+		<small class="copy_right" th:text="${small}"></small>
+	</footer>
+</body>
+
+</html>

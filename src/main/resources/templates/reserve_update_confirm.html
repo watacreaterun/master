@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>予約確認画面</title>
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<header>
+		<a th:href="@{/}" class="header_title"><img th:src="@{/images/Reserve.png}" id="header_logo"></a>
+	</header>
+<!--	<h1 class="header_pagename"><img th:src="@{images/goraitenyoyaku.png}"></h1>-->
+	<h1 class="header_pagename">更新確認画面</h1>
+	<div class="container">
+		<section class="form_section">
+			<h2 class="form_title">予約日</h2>
+			<p th:text="${reservationForm.reserveDate}"></p>
+		</section>
+		<section class="form_section">
+			<h2 class="form_title">予約時間</h2>
+			<p th:text="${reservationForm.reserveTime}"></p>
+		</section>
+		<section class="form_section">
+			<h2 class="form_title">人数</h2>
+			<p th:text="${reservationForm.reserveNum}"></p>
+		</section>
+		<section class="form_section">
+			<h2 class="form_title">予約者情報</h2>
+			<div class="form_customer_information">
+				<div class="form_customer_informatioin_child">
+					<h3 class="form_customer_informatioin_child_title">お名前</h3>
+					<p th:text="${reservationForm.customerName}"></p>
+				</div>
+				<div class="form_customer_informatioin_child">
+					<h3 class="form_customer_informatioin_child_title">メールアドレス</h3>
+					<p th:text="${reservationForm.email}"></p>
+				</div>
+				<div class="form_customer_informatioin_child">
+					<h3 class="form_customer_informatioin_child_title">電話番号</h3>
+					<p th:text="${reservationForm.phone}"></p>
+				</div>
+			</div>
+		</section>
+		<section class="form_section">
+			<h2 class="form_title">備考欄</h2>
+			<p th:text="${reservationForm.comment}"></p>
+			            <p th:text="${requestUri}"></p>
+		</section>
+		<p class="confirm_phrase">以上の予約内容で間違いなければ、予約確定ボタンを押してください。</p>
+		<form class="determine_reservation_form" action="/reserve_update_complete" method="post">
+			<input type="hidden" name="id" th:value="${reservationForm.id}" />
+			<input type="hidden" name="reserveDate" th:value="${reservationForm.reserveDate}" />
+			<input type="hidden" name="reserveTime" th:value="${reservationForm.reserveTime}" />
+			<input type="hidden" name="reserveNum" th:value="${reservationForm.reserveNum}" />
+			<input type="hidden" name="customerName" th:value="${reservationForm.customerName}" />
+			<input type="hidden" name="email" th:value="${reservationForm.email}" />
+			<input type="hidden" name="phone" th:value="${reservationForm.phone}" />
+			<input type="hidden" name="comment" th:value="${reservationForm.comment}" />
+			<section class="btn_section">
+				<button class="btn_for_movement determine_reservation_btn" id="determine_reservation_btn_confirm"
+					type="submit">予約確定</button>
+			</section>
+		</form>
+		<form class="back_reserve_form" th:action="@{/reserve_update/{reserveId}(reserveId=${reservationForm.id})}">
+			<section class="btn_section">
+				<button class="btn_for_movement back_btn" id="back_btn_confirm" type="submit">予約入力画面へ戻る</button>
+			</section>
+		</form>
+	</div>
+	<footer>
+		<small class="copy_right" th:text="${small}"></small>
+	</footer>
+	<script th:src="@{/js/script.js}"></script>
+</body>
+
+</html>

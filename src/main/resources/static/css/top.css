@@ -1,0 +1,22 @@
+.btn_container_top {
+	display: flex;
+}
+
+.btn_container_top form:last-child {
+	margin-left: 15px;
+}
+
+.btn_container_top form:last-child>.btn_section>.top_reserve_btn {
+	background-color: lightgreen;
+	border: 1px solid lightgreen;
+}
+
+.btn_container_top form:last-child>.btn_section>.top_reserve_btn:hover {
+	background-color: #fff;
+	color: lightgreen;
+}
+
+.btn_container_top form:last-child>.btn_section>.top_reserve_btn:hover:before {
+	border-top: 2px solid lightgreen;
+	border-right: 2px solid lightgreen;
+}

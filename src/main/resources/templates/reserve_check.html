@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>予約内容確認画面</title>
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/css/reserve_check.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<header>
+		<a th:href="@{/}" class="header_title"><img th:src="@{images/Reserve.png}" id="header_logo"></a>
+	</header>
+	<!--	<h1 class="header_pagename"><img th:src="@{images/goraitenyoyaku.png}"></h1>-->
+	<h1 class="header_pagename">予約内容確認</h1>
+	<div class="container">
+		<div class="reserve_container">
+			<div class="reserve_body" th:each="reserve : ${reserves}">
+				<div class="reserve_wrapper">
+					<p class="reserve_costomer_name-reserve_check" th:text="${reserve.customerName}"></p>
+					<a th:href="@{/reserve_check_detail/{reserveId}(reserveId=${reserve.id})}">
+						<button class="to_reserve_check_detail">予約詳細</button>
+					</a>
+				</div>
+				<div class="reserve_wrapper">
+					<p class="reserve_costomer_date-reserve_check" th:text="${reserve.reserveDate}"></p>
+					<p class="reserve_costomer_date-reserve_check" th:text="${reserve.reserveTime}"></p>
+				</div>
+			</div>
+		</div>
+		<section class="btn_section">
+			<a class="btn_for_movement back_btn" id="back_btn_index" href="/">戻る</a>
+		</section>
+	</div>
+	<footer>
+		<small class="copy_right" th:text="${small}"></small>
+	</footer>
+	<script th:src="@{/js/script.js}"></script>
+</body>
+
+</html>

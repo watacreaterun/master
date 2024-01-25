@@ -1,0 +1,58 @@
+.btn_for_movement {
+	border: 0;
+	color: #fff;
+}
+
+.reserve_btn_wrapper {
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 30px;
+}
+
+.reserve_btn_wrapper a {
+	display: inline-block;
+	width: 25%;
+	margin-right: 10px;
+}
+
+.to_reserve_update_btn {
+	background-color: gold;
+	margin-right: 10px;
+}
+
+.delete_reservation_btn {
+	background-color: hotpink;
+}
+
+.to_reserve_update_btn:before,
+.delete_reservation_btn:before {
+	content: '';
+	width: 8px;
+	height: 8px;
+	border: 0;
+	border-top: 2px solid #fff;
+	border-right: 2px solid #fff;
+	transform: rotate(45deg);
+	position: absolute;
+	top: 50%;
+	right: 25px;
+	margin-top: -6px;
+}
+
+.to_reserve_update_btn:hover {
+	color: gold;
+}
+
+.to_reserve_update_btn:hover:before {
+	border-top: 2px solid gold;
+	border-right: 2px solid gold;
+}
+
+.delete_reservation_btn:hover {
+	color: hotpink;
+}
+
+.delete_reservation_btn:hover:before {
+	border-top: 2px solid hotpink;
+	border-right: 2px solid hotpink;	
+}

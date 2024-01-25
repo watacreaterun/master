@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>予約詳細画面</title>
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/css/reserve_check_detail.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<header>
+		<a th:href="@{/}" class="header_title"><img th:src="@{/images/Reserve.png}" id="header_logo"></a>
+	</header>
+	<!--	<h1 class="header_pagename"><img th:src="@{images/goraitenyoyaku.png}"></h1>-->
+	<h1 class="header_pagename">予約詳細</h1>
+	<div class="container">
+		<section class="form_section-reserve_check_detail">
+			<h2 class="form_title-reserve_check_detail">予約日</h2>
+			<p th:text="${reserve.reserveDate}"></p>
+		</section>
+		<section class="form_section-reserve_check_detail">
+			<h2 class="form_title-reserve_check_detail">予約時間</h2>
+			<p th:text="${reserve.reserveTime}"></p>
+		</section>
+		<section class="form_section-reserve_check_detail">
+			<h2 class="form_title-reserve_check_detail">人数</h2>
+			<p th:text="${reserve.reserveNum}"></p>
+		</section>
+		<section class="form_section-reserve_check_detail">
+			<h2 class="form_title-reserve_check_detail">予約者情報</h2>
+			<div class="form_customer_information">
+				<div class="form_customer_informatioin_child">
+					<h3 class="form_customer_informatioin_child_title">お名前</h3>
+					<p th:text="${reserve.customerName}"></p>
+				</div>
+				<div class="form_customer_informatioin_child">
+					<h3 class="form_customer_informatioin_child_title">メールアドレス</h3>
+					<p th:text="${reserve.email}"></p>
+				</div>
+				<div class="form_customer_informatioin_child">
+					<h3 class="form_customer_informatioin_child_title">電話番号</h3>
+					<p th:text="${reserve.phone}"></p>
+				</div>
+			</div>
+		</section>
+		<section class="form_section-reserve_check_detail">
+			<h2 class="form_title-reserve_check_detail">備考欄</h2>
+			<p th:text="${reserve.comment}"></p>
+		</section>
+		<div class="reserve_btn_wrapper">
+			<a th:href="@{/reserve_update/{reserveId}(reserveId=${reserve.id})}">
+				<button class="btn_for_movement to_reserve_update_btn">予約を更新する</button>
+			</a>
+			<a th:href="@{'/delete_reservation/' + ${reserve.id}}" onclick="return confirm('予約を削除しますか？')">
+				<button class="btn_for_movement delete_reservation_btn">予約削除</button>
+			</a>
+		</div>
+		<section class="btn_section">
+			<a class="btn_for_movement back_btn" id="back_btn_index" href="/reserve_check">戻る</a>
+		</section>
+	</div>
+	<footer>
+		<small class="copy_right" th:text="${small}"></small>
+	</footer>
+	<script th:src="@{/js/script.js}"></script>
+</body>
+
+</html>

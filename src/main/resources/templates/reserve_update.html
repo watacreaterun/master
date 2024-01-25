@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>予約内容更新画面</title>
+	<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<header>
+		<a th:href="@{/}" class="header_title"><img th:src="@{/images/Reserve.png}" id="header_logo"></a>
+	</header>
+	<!--	<h1 class="header_pagename"><img th:src="@{images/goraitenyoyaku.png}"></h1>-->
+	<h1 class="header_pagename">予約内容更新</h1>
+	<div class="container">
+		<div th:if="${errors}" class="error-message">
+			<ul class="error_messages">
+				<li th:each="error : ${errors}" th:text="${error}"></li>
+			</ul>
+		</div>
+		<form th:object="${reserve}" th:action="@{/reserve_update_confirm}" method="post">
+			<input type="hidden" name="id" th:value="${reserve.id}">
+			<section class="form_section">
+				<h2 class="form_title">予約日</h2>
+				<input class="reserve_date" type="date" id="reserve_date" name="reserveDate" required>
+			</section>
+			<section class="form_section">
+				<h2 class="form_title">予約時間</h2>
+				<select class="reserve_time" id="reserve_time" name="reserveTime" required>
+					<option th:value="${#dates.format(reserve.reserveTime, 'HH:mm')}"
+						th:text="${#dates.format(reserve.reserveTime, 'HH:mm')}" selected></option>
+				</select>
+			</section>
+			<section class="form_section">
+				<h2 class="form_title">人数</h2>
+				<select class="select_area_reserve_num" required name="reserveNum">
+					<option value="" disabled selected>人数を選択してください</option>
+					<option value="1" th:attr="selected=${reserve.reserveNum == 1}">1人</option>
+					<option value="2" th:attr="selected=${reserve.reserveNum == 2}">2人</option>
+					<option value="3" th:attr="selected=${reserve.reserveNum == 3}">3人</option>
+					<option value="4" th:attr="selected=${reserve.reserveNum == 4}">4人</option>
+					<option value="5" th:attr="selected=${reserve.reserveNum == 5}">5人</option>
+					<option value="6" th:attr="selected=${reserve.reserveNum == 6}">6人以上</option>
+				</select>
+			</section>
+			<section class="form_section">
+				<h2 class="form_title">予約者情報</h2>
+				<div class="form_customer_information">
+					<div class="form_customer_informatioin_child">
+						<h3 class="form_customer_informatioin_child_title">お名前</h3>
+						<input class="input_customer_name" type="text" name="customerName" placeholder="お名前" required
+							th:value="${reserve.customerName}">
+					</div>
+					<div class="form_customer_informatioin_child">
+						<h3 class="form_customer_informatioin_child_title">メールアドレス</h3>
+						<input class="input_email" type="email" name="email" placeholder="メールアドレス" required
+							th:value="${reserve.email}">
+					</div>
+					<div class="form_customer_informatioin_child">
+						<h3 class="form_customer_informatioin_child_title">電話番号</h3>
+						<input class="input_tel" type="tel" name="phone" placeholder="電話番号" required
+							th:value="${reserve.phone}">
+					</div>
+				</div>
+			</section>
+			<section class="form_section">
+				<h2 class="form_title">備考欄</h2>
+				<textarea class="comment_area" name="comment" rows="10" cols="40" placeholder="備考欄"
+					th:value="${reserve.comment}"></textarea>
+			</section>
+			<section class="btn_section">
+				<button class="btn_for_movement proceed_to_confirm_btn" id="proceed_to_confirm_btn_index"
+					type="submit">確認画面へ進む</button>
+			</section>
+			<section class="btn_section">
+				<a class="btn_for_movement back_btn" id="back_btn_index" th:href="@{/reserve_check_detail/{reserveId}(reserveId=${reserve.id})}">戻る</a>
+			</section>
+		</form>
+	</div>
+
+	<footer>
+		<small class="copy_right" th:text="${small}"></small>
+	</footer>
+	<script th:src="@{/js/script.js}"></script>
+</body>
+
+</html>
